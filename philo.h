@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/05 20:45:01 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/05 23:17:44 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 # include <time.h>
 # define PHILO_MAX 300
 
+typedef struct s_info
+{
+	long			time_to_die;
+	long			time_to_sleep;
+	long			time_to_eat;
+	long			nbr_limit_meals;
+	long			start_simulation;
+	bool			end_simulation;
+	int				philo_nbr;
+}		t_info;
+
 typedef struct s_philo
 {
 	int				id;
@@ -32,23 +43,10 @@ typedef struct s_philo
 	t_info			*infos;
 }		t_philo;
 
-typedef struct s_info
-{
-	long			time_to_die;
-	long			time_to_sleep;
-	long			time_to_eat;
-	long			nbr_limit_meals;
-	long			start_simulation;
-	bool			end_simulation;
-	int				philo_nbr;
-}		t_info;
-/*
-typedef struct s_table
-{
-	t_philo	*philos;
-}				t_table;*/
 int	ft_atoi(const char *str);
-void	parsing_params(t_philo *philo, char **params);
+long	ft_atol(const char *str);
+void	init_infos(t_info *infos, char **params);
 void	init_forks(pthread_mutex_t *forks, int philo_nbr);
-void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks);
+void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
+void	create_threads(t_info *infos, t_philo *philos);
 #endif
