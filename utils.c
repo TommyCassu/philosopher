@@ -6,11 +6,43 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:00:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/05 22:05:24 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/06 19:39:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	precise_usleep(long usec, t_info *infos)
+{
+	long	start;
+	long	elapsed;
+	long	rem;
+	
+	start = get_time();
+	while (get_time() - start < usec)
+	{
+		if (infos->end_simulation == true)
+			return ;
+		elapsed = get_time() - start;
+		rem = usec - elapsed;
+
+		if (rem > 1e3)
+			usleep(usec/2);
+		else
+		{
+			while (get_time() - start < usec)
+				;
+		}
+	}
+}
+
+long	get_time()
+{
+	struct timeval	tv;
+	
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
+}
 
 long	ft_atol(const char *str)
 {

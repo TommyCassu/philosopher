@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/05 22:23:49 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/06 03:37:32 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_infos(t_info *infos, char **params)
 
 void	init_philo(t_philo *philo, int i, pthread_mutex_t *forks, t_info *infos)
 {
-	philo->id = i;
+	philo->id = i + 1;
 	philo->meals_counter = 0;
 	philo->last_meal_time = 0; // start code getcurenttimestamp
 	philo->left_fork = &forks[i];
