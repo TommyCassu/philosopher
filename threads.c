@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/06 19:53:29 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 00:53:15 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ void	*philo_process(void *arg)
 	i = 0;
 	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
-		precise_usleep(philo->infos->time_to_eat, philo->infos);
-	while (i < 5)
+		precise_usleep(1, philo->infos);
+	while (i < 5 && philo->infos->end_simulation == false)
 	{
+		if (philo->infos->end_simulation == true)
+			break;
 		take_forks(philo);
+		if (philo->infos->end_simulation == true)
+			break;
 		ft_sleep(philo);
 		i++;
 	}
@@ -47,13 +51,15 @@ void	*verif_death(void *arg)
 	while (1)
 	{
 		i = 0;
+		now = get_time();
 		while (i < philos->infos->philo_nbr)
 		{
-			now = get_time();
 			if (now - philos[i].last_meal_time >= philos->infos->time_to_die)
 			{
+				pthread_mutex_lock(&philos->infos->dead);
 				philos->infos->end_simulation = true;
-				printf("[%ld ms] Philosopher %d is dead\n", get_time() - philos->infos->start_simulation, philos[i].id);
+				print("is dead", philos);
+				pthread_mutex_unlock(&philos->infos->dead);
 				return NULL;
 			}
 			i++;
@@ -83,7 +89,7 @@ void	create_threads(t_info *infos, t_philo *philos)
 		pthread_join((philos[i].thread_id), NULL);
 		i++;
 	}
-	
+	pthread_join(infos->death_thread, NULL);
 	return ;
 }
 

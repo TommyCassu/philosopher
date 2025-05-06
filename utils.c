@@ -6,31 +6,41 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:00:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/06 19:39:08 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 00:21:05 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	precise_usleep(long usec, t_info *infos)
+void	print(char	*msg, t_philo *philo)
+{
+	long	current_time;
+	
+	pthread_mutex_lock(&philo->infos->print);
+	current_time = get_time() - philo->infos->start_simulation;
+	printf("[%ld ms] Philosopher %d %s\n", current_time , philo->id, msg);
+	pthread_mutex_unlock(&philo->infos->print);
+}
+
+void	precise_usleep(long ms, t_info *infos)
 {
 	long	start;
 	long	elapsed;
 	long	rem;
 	
 	start = get_time();
-	while (get_time() - start < usec)
+	while (get_time() - start < ms)
 	{
 		if (infos->end_simulation == true)
 			return ;
 		elapsed = get_time() - start;
-		rem = usec - elapsed;
+		rem = ms - elapsed;
 
-		if (rem > 1e3)
-			usleep(usec/2);
+		if (rem > 1)
+			usleep(rem * 1000 / 2);
 		else
 		{
-			while (get_time() - start < usec)
+			while ((get_time() - start) < ms)
 				;
 		}
 	}
@@ -41,7 +51,7 @@ long	get_time()
 	struct timeval	tv;
 	
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
+	return ((tv.tv_sec * 1000L) + (tv.tv_usec / 1000L));
 }
 
 long	ft_atol(const char *str)

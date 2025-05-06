@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/06 19:40:03 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 00:27:41 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct s_info
 	bool			end_simulation;
 	int				philo_nbr;
 	pthread_t	death_thread;
+	pthread_mutex_t	print;
+	pthread_mutex_t	meal;
+	pthread_mutex_t	dead;
 }		t_info;
 
 typedef struct s_philo
@@ -47,6 +50,7 @@ typedef struct s_philo
 
 int	ft_atoi(const char *str);
 long	ft_atol(const char *str);
+void	init_program(t_info *infos);
 void	init_infos(t_info *infos, char **params);
 void	init_forks(pthread_mutex_t *forks, int philo_nbr);
 void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
@@ -55,4 +59,5 @@ void	take_forks(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 long	get_time();
 void	precise_usleep(long usec, t_info *infos);
+void	print(char	*msg, t_philo *philo);
 #endif

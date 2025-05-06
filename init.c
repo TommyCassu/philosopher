@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/06 03:37:32 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 00:27:55 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,12 @@ void	init_forks(pthread_mutex_t *forks, int philo_nbr)
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
+}
+
+void	init_program(t_info *infos)
+{
+	pthread_mutex_init(&infos->print, NULL);
+	pthread_mutex_init(&infos->meal, NULL);
+	pthread_mutex_init(&infos->dead, NULL);
 }
 
