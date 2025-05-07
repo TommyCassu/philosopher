@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:00:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 17:12:40 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 23:06:49 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	print(char	*msg, t_philo *philo)
 	long	current_time;
 	
 	pthread_mutex_lock(&philo->infos->print);
-	current_time = get_time() - philo->infos->start_simulation;
 	if (philo->infos->end_simulation == false)
+	{
+		current_time = get_time() - philo->infos->start_simulation;
 		printf("[%ld ms] Philosopher %d %s\n", current_time , philo->id, msg);
+	}
 	pthread_mutex_unlock(&philo->infos->print);
 }
 

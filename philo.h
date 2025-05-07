@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 11:07:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 21:38:52 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ typedef struct s_info
 	long			start_simulation;
 	bool			end_simulation;
 	int				philo_nbr;
-	pthread_t	death_thread;
+	pthread_t	stop_thread;
 	pthread_mutex_t	print;
 	pthread_mutex_t	meal;
-	pthread_mutex_t	dead;
+	pthread_mutex_t	death;
+	pthread_mutex_t	stop;
 }		t_info;
 
 typedef struct s_philo
@@ -61,4 +62,6 @@ void	ft_sleep(t_philo *philo);
 long	get_time();
 void	precise_usleep(long usec, t_info *infos);
 void	print(char	*msg, t_philo *philo);
+
+void	*manager(void *arg);
 #endif

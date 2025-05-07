@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:58:53 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 11:15:59 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 21:39:22 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	take_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->infos->dead);
+	pthread_mutex_lock(&philo->infos->death);
 	philo->last_meal_time = get_time();
 	print("Eat", philo);
-	pthread_mutex_unlock(&philo->infos->dead);
+	pthread_mutex_unlock(&philo->infos->death);
 	precise_usleep(philo->infos->time_to_eat, philo->infos);
 	pthread_mutex_lock(&philo->infos->meal);
 	philo->meals_counter++;

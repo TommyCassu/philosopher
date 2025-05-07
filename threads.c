@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 17:37:58 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 21:59:30 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,12 @@ void	*philo_process(void *arg)
 		take_forks(philo);
 		eat(philo);
 		ft_sleep(philo);
+		precise_usleep(1, philo->infos);
 		i++;
 	}
 	return NULL;
 }
-int	verif_nb_meals(t_info *info)
-{
-	
-}
 
-void	*verif_death(void *arg)
-{
-	t_philo	*philos;
-	
-	philos = (t_philo *)arg;
-	while (philos->infos->end_simulation == false)
-	{
-		if (verif_nb_meals(philos->infos))
-		{
-			check_meals(philos->infos);
-		}
-		precise_usleep(100, philos->infos);
-	}
-	return (NULL);
-}
 
 void	create_threads(t_info *infos, t_philo *philos)
 {
@@ -66,15 +48,16 @@ void	create_threads(t_info *infos, t_philo *philos)
 		pthread_create(&(philos[i].thread_id), NULL, philo_process, &philos[i]);
 		i++;
 	}
-	if (pthread_create(&(infos->death_thread), NULL, verif_death, philos) != 0)
+	if (pthread_create(&(infos->stop_thread), NULL, manager, philos) != 0)
     	perror("pthread_create death_thread");
 	i = 0;
+	pthread_join(infos->stop_thread, NULL);
 	while (i < infos->philo_nbr)
 	{
 		pthread_join((philos[i].thread_id), NULL);
 		i++;
 	}
-	pthread_join(infos->death_thread, NULL);
+	
 	return ;
 }
 
