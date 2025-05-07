@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 00:27:41 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 11:07:18 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_forks(pthread_mutex_t *forks, int philo_nbr);
 void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
 void	create_threads(t_info *infos, t_philo *philos);
 void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 long	get_time();
 void	precise_usleep(long usec, t_info *infos);

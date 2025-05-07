@@ -6,19 +6,12 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 00:53:15 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/07 17:37:58 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-/*
-			write(1, "Eating\n", 7);
-			sleep(); // time to eat
-			philo->meals_counter++;
-			set new last meal value
-			release fork
-			start to sleep			
-			*/
+
 void	*philo_process(void *arg)
 {
 	t_philo	*philo;
@@ -26,47 +19,39 @@ void	*philo_process(void *arg)
 
 	i = 0;
 	philo = (t_philo *)arg;
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 == 0)
 		precise_usleep(1, philo->infos);
-	while (i < 5 && philo->infos->end_simulation == false)
+	while (philo->infos->end_simulation == false)
 	{
 		if (philo->infos->end_simulation == true)
 			break;
+		print("is thinking", philo);
 		take_forks(philo);
-		if (philo->infos->end_simulation == true)
-			break;
+		eat(philo);
 		ft_sleep(philo);
 		i++;
 	}
 	return NULL;
 }
+int	verif_nb_meals(t_info *info)
+{
+	
+}
 
 void	*verif_death(void *arg)
 {
 	t_philo	*philos;
-	int		i;
-	long	now;
 	
 	philos = (t_philo *)arg;
-	while (1)
+	while (philos->infos->end_simulation == false)
 	{
-		i = 0;
-		now = get_time();
-		while (i < philos->infos->philo_nbr)
+		if (verif_nb_meals(philos->infos))
 		{
-			if (now - philos[i].last_meal_time >= philos->infos->time_to_die)
-			{
-				pthread_mutex_lock(&philos->infos->dead);
-				philos->infos->end_simulation = true;
-				print("is dead", philos);
-				pthread_mutex_unlock(&philos->infos->dead);
-				return NULL;
-			}
-			i++;
+			check_meals(philos->infos);
 		}
 		precise_usleep(100, philos->infos);
 	}
-	return NULL;
+	return (NULL);
 }
 
 void	create_threads(t_info *infos, t_philo *philos)
