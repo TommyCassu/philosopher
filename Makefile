@@ -6,7 +6,7 @@
 #    By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/07 17:43:09 by marvin            #+#    #+#              #
-#    Updated: 2025/05/09 19:55:32 by tcassu           ###   ########.fr        #
+#    Updated: 2025/05/09 22:02:59 by tcassu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ RANLIB		= ranlib
 
 GCC			= gcc
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 
 all:		${NAME}
 
@@ -37,7 +37,7 @@ all:		${NAME}
 			${GCC} ${CFLAGS} -c -I ${INCLUDES} $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			${GCC} ${CFLAGS} -o ${NAME} ${OBJS} -g
+			${GCC} ${CFLAGS} -o ${NAME} ${OBJS} 
 
 clean:
 			rm -f ${OBJS}

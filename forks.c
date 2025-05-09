@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:58:53 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 20:29:52 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:37:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ void	check_same_forks(t_philo *philo)
 {
 	if (philo->left_fork == philo->right_fork)
 	{
-		precise_usleep(philo->infos->time_to_eat, philo->infos);
+		precise_usleep(philo->infos->time_to_die, philo->infos);
 		pthread_mutex_lock(&philo->infos->stop);
-        print("died", philo);
-        philo->infos->end_simulation = true;
-        pthread_mutex_unlock(&philo->infos->stop);
+		print("died", philo);
+		philo->infos->end_simulation = true;
+		pthread_mutex_unlock(&philo->infos->stop);
 		if (philo->id % 2 == 0)
 			pthread_mutex_unlock(philo->right_fork);
 		else
 			pthread_mutex_unlock(philo->right_fork);
 	}
 }
+
 void	take_forks(t_philo *philo)
 {
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		print("Has taken left fork", philo);
 		pthread_mutex_lock(philo->right_fork);
-		print("Has taken right fork", philo);	
+		print("Has taken right fork", philo);
 	}
 	else
 	{
@@ -44,15 +45,13 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(philo->left_fork);
 		print("Has taken left fork", philo);
 	}
-	//if (philo->id < philo->infos->philo_nbr)
-	
 }
 
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->infos->death);
 	philo->last_meal_time = get_time();
-	print("Eat", philo);
+	print("is eating", philo);
 	pthread_mutex_unlock(&philo->infos->death);
 	precise_usleep(philo->infos->time_to_eat, philo->infos);
 	pthread_mutex_lock(&philo->infos->meal);
@@ -61,8 +60,9 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
+
 void	ft_sleep(t_philo *philo)
 {
-	print("Sleeping", philo);
+	print("is sleeping", philo);
 	precise_usleep(philo->infos->time_to_sleep, philo->infos);
 }

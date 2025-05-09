@@ -6,19 +6,19 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 20:44:03 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:36:40 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <pthread.h>
-#include <sys/time.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <pthread.h>
+# include <sys/time.h>
 # define PHILO_MAX 300
 
 typedef struct s_info
@@ -31,7 +31,7 @@ typedef struct s_info
 	bool			philo_ready;
 	bool			end_simulation;
 	int				philo_nbr;
-	pthread_t	stop_thread;
+	pthread_t		stop_thread;
 	pthread_mutex_t	print;
 	pthread_mutex_t	meal;
 	pthread_mutex_t	death;
@@ -49,20 +49,19 @@ typedef struct s_philo
 	t_info			*infos;
 }		t_philo;
 
-
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 void	init_program(t_info *infos);
 int		init_infos(t_info *infos, char **params);
 void	init_forks(pthread_mutex_t *forks, int philo_nbr);
-int	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
+int		creating_philosopher(t_philo *philos, char **params,
+			pthread_mutex_t *forks, t_info *infos);
 void	create_threads(t_info *infos, t_philo *philos);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
-long	get_time();
+long	get_time(void);
 void	precise_usleep(long usec, t_info *infos);
 void	print(char	*msg, t_philo *philo);
-
 void	*manager(void *arg);
 #endif

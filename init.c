@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 20:44:34 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:34:11 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ int	init_infos(t_info *infos, char **params)
 {
 	infos->philo_nbr = ft_atol(params[1]);
 	infos->time_to_die = ft_atol(params[2]);
-	infos->time_to_eat= ft_atol(params[3]);
+	infos->time_to_eat = ft_atol(params[3]);
 	infos->time_to_sleep = ft_atol(params[4]);
 	if (params[5])
 		infos->nbr_limit_meals = ft_atol(params[5]);
 	else
 		infos->nbr_limit_meals = -1;
-	if (infos->philo_nbr <= 0 || infos->time_to_die <= 0 || infos->time_to_eat <= 0
-		|| infos->time_to_sleep <= 0)
+	if (infos->philo_nbr <= 0 || infos->time_to_die <= 0
+		|| infos->time_to_eat <= 0 || infos->time_to_sleep <= 0)
 		return (1);
 	infos->end_simulation = false;
-	infos->philo_ready = false;
 	return (0);
 }
 
@@ -35,7 +34,7 @@ void	init_philo(t_philo *philo, int i, pthread_mutex_t *forks, t_info *infos)
 {
 	philo->id = i + 1;
 	philo->meals_counter = 0;
-	philo->last_meal_time = 0; // start code getcurenttimestamp
+	philo->last_meal_time = 0;
 	philo->left_fork = &forks[i];
 	if (i == 0)
 		philo->right_fork = &forks[infos->philo_nbr - 1];
@@ -44,11 +43,12 @@ void	init_philo(t_philo *philo, int i, pthread_mutex_t *forks, t_info *infos)
 	philo->infos = infos;
 }
 
-int	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos)
+int	creating_philosopher(t_philo *philos, char **params,
+	pthread_mutex_t *forks, t_info *infos)
 {
 	int	i;
 	int	nbr_philo;
-	
+
 	i = 0;
 	nbr_philo = ft_atoi(params[1]);
 	if (init_infos(infos, params) == 1)
@@ -61,11 +61,10 @@ int	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks,
 	return (0);
 }
 
-//Forks
 void	init_forks(pthread_mutex_t *forks, int philo_nbr)
 {
 	long	i;
-	
+
 	i = 0;
 	while (i < philo_nbr)
 	{
@@ -81,4 +80,3 @@ void	init_program(t_info *infos)
 	pthread_mutex_init(&infos->death, NULL);
 	pthread_mutex_init(&infos->stop, NULL);
 }
-
