@@ -6,16 +6,30 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:58:53 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 21:39:22 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 20:29:52 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	check_same_forks(t_philo *philo)
+{
+	if (philo->left_fork == philo->right_fork)
+	{
+		precise_usleep(philo->infos->time_to_eat, philo->infos);
+		pthread_mutex_lock(&philo->infos->stop);
+        print("died", philo);
+        philo->infos->end_simulation = true;
+        pthread_mutex_unlock(&philo->infos->stop);
+		if (philo->id % 2 == 0)
+			pthread_mutex_unlock(philo->right_fork);
+		else
+			pthread_mutex_unlock(philo->right_fork);
+	}
+}
 void	take_forks(t_philo *philo)
 {
-	
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		print("Has taken left fork", philo);
@@ -26,10 +40,12 @@ void	take_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->right_fork);
 		print("Has taken right fork", philo);
-
+		check_same_forks(philo);
 		pthread_mutex_lock(philo->left_fork);
 		print("Has taken left fork", philo);
 	}
+	//if (philo->id < philo->infos->philo_nbr)
+	
 }
 
 void	eat(t_philo *philo)

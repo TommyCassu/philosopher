@@ -6,14 +6,14 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 20:48:28 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 20:44:34 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 // Philosopher
-void	init_infos(t_info *infos, char **params)
+int	init_infos(t_info *infos, char **params)
 {
 	infos->philo_nbr = ft_atol(params[1]);
 	infos->time_to_die = ft_atol(params[2]);
@@ -25,8 +25,10 @@ void	init_infos(t_info *infos, char **params)
 		infos->nbr_limit_meals = -1;
 	if (infos->philo_nbr <= 0 || infos->time_to_die <= 0 || infos->time_to_eat <= 0
 		|| infos->time_to_sleep <= 0)
-		return ;
+		return (1);
 	infos->end_simulation = false;
+	infos->philo_ready = false;
+	return (0);
 }
 
 void	init_philo(t_philo *philo, int i, pthread_mutex_t *forks, t_info *infos)
@@ -42,19 +44,21 @@ void	init_philo(t_philo *philo, int i, pthread_mutex_t *forks, t_info *infos)
 	philo->infos = infos;
 }
 
-void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos)
+int	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos)
 {
 	int	i;
 	int	nbr_philo;
 	
 	i = 0;
 	nbr_philo = ft_atoi(params[1]);
-	init_infos(infos, params);
+	if (init_infos(infos, params) == 1)
+		return (1);
 	while (i < nbr_philo)
 	{
 		init_philo(&philos[i], i, forks, infos);
 		i++;
 	}
+	return (0);
 }
 
 //Forks

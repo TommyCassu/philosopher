@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 00:00:09 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 20:00:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int main(int ac, char *av[])
 		//check errors
 		//Init data
 		init_forks(forks, ft_atoi(av[1]));
-		creating_philosopher(philos, av, forks, &infos);
+		if (creating_philosopher(philos, av, forks, &infos) == 1)
+			return (0);
 		init_program(&infos);
 		create_threads(&infos, philos);
 		// dyning

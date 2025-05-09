@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 21:59:30 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 20:45:20 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*philo_process(void *arg)
 
 	i = 0;
 	philo = (t_philo *)arg;
+	while (philo->infos->philo_ready == false)
+		;
 	if (philo->id % 2 == 0)
 		precise_usleep(1, philo->infos);
 	while (philo->infos->end_simulation == false)

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 21:38:52 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 20:44:03 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_info
 	long			time_to_eat;
 	long			nbr_limit_meals;
 	long			start_simulation;
+	bool			philo_ready;
 	bool			end_simulation;
 	int				philo_nbr;
 	pthread_t	stop_thread;
@@ -52,9 +53,9 @@ typedef struct s_philo
 int	ft_atoi(const char *str);
 long	ft_atol(const char *str);
 void	init_program(t_info *infos);
-void	init_infos(t_info *infos, char **params);
+int		init_infos(t_info *infos, char **params);
 void	init_forks(pthread_mutex_t *forks, int philo_nbr);
-void	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
+int	creating_philosopher(t_philo *philos, char **params, pthread_mutex_t *forks, t_info *infos);
 void	create_threads(t_info *infos, t_philo *philos);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);

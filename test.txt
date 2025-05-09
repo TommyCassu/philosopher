@@ -1,0 +1,265 @@
+[0 ms] Philosopher 1 is thinking
+[0 ms] Philosopher 1 Has taken left fork
+[0 ms] Philosopher 1 Has taken right fork
+[0 ms] Philosopher 1 Eat
+[0 ms] Philosopher 5 is thinking
+[0 ms] Philosopher 5 Has taken left fork
+[0 ms] Philosopher 5 Has taken right fork
+[0 ms] Philosopher 5 Eat
+[0 ms] Philosopher 7 is thinking
+[0 ms] Philosopher 7 Has taken left fork
+[0 ms] Philosopher 7 Has taken right fork
+[0 ms] Philosopher 7 Eat
+[1 ms] Philosopher 4 is thinking
+[1 ms] Philosopher 3 is thinking
+[1 ms] Philosopher 9 is thinking
+[1 ms] Philosopher 9 Has taken left fork
+[1 ms] Philosopher 9 Has taken right fork
+[1 ms] Philosopher 9 Eat
+[1 ms] Philosopher 4 Has taken right fork
+[1 ms] Philosopher 6 is thinking
+[1 ms] Philosopher 2 is thinking
+[1 ms] Philosopher 11 is thinking
+[1 ms] Philosopher 11 Has taken left fork
+[1 ms] Philosopher 11 Has taken right fork
+[1 ms] Philosopher 11 Eat
+[1 ms] Philosopher 13 is thinking
+[1 ms] Philosopher 13 Has taken left fork
+[1 ms] Philosopher 13 Has taken right fork
+[1 ms] Philosopher 13 Eat
+[1 ms] Philosopher 15 is thinking
+[1 ms] Philosopher 15 Has taken left fork
+[1 ms] Philosopher 15 Has taken right fork
+[1 ms] Philosopher 15 Eat
+[1 ms] Philosopher 17 is thinking
+[1 ms] Philosopher 17 Has taken left fork
+[1 ms] Philosopher 17 Has taken right fork
+[1 ms] Philosopher 17 Eat
+[1 ms] Philosopher 19 is thinking
+[1 ms] Philosopher 19 Has taken left fork
+[1 ms] Philosopher 19 Has taken right fork
+[1 ms] Philosopher 19 Eat
+[2 ms] Philosopher 16 is thinking
+[2 ms] Philosopher 23 is thinking
+[2 ms] Philosopher 23 Has taken left fork
+[2 ms] Philosopher 23 Has taken right fork
+[2 ms] Philosopher 23 Eat
+[3 ms] Philosopher 39 is thinking
+[3 ms] Philosopher 39 Has taken left fork
+[3 ms] Philosopher 39 Has taken right fork
+[3 ms] Philosopher 39 Eat
+[3 ms] Philosopher 14 is thinking
+[3 ms] Philosopher 18 is thinking
+[3 ms] Philosopher 8 is thinking
+[3 ms] Philosopher 10 is thinking
+[3 ms] Philosopher 20 is thinking
+[3 ms] Philosopher 25 is thinking
+[3 ms] Philosopher 25 Has taken left fork
+[3 ms] Philosopher 25 Has taken right fork
+[3 ms] Philosopher 25 Eat
+[3 ms] Philosopher 27 is thinking
+[3 ms] Philosopher 27 Has taken left fork
+[3 ms] Philosopher 27 Has taken right fork
+[3 ms] Philosopher 27 Eat
+[3 ms] Philosopher 12 is thinking
+[3 ms] Philosopher 29 is thinking
+[3 ms] Philosopher 29 Has taken left fork
+[3 ms] Philosopher 29 Has taken right fork
+[3 ms] Philosopher 29 Eat
+[3 ms] Philosopher 31 is thinking
+[3 ms] Philosopher 31 Has taken left fork
+[3 ms] Philosopher 31 Has taken right fork
+[3 ms] Philosopher 31 Eat
+[3 ms] Philosopher 33 is thinking
+[3 ms] Philosopher 33 Has taken left fork
+[3 ms] Philosopher 33 Has taken right fork
+[3 ms] Philosopher 33 Eat
+[3 ms] Philosopher 21 is thinking
+[3 ms] Philosopher 21 Has taken left fork
+[3 ms] Philosopher 21 Has taken right fork
+[3 ms] Philosopher 21 Eat
+[3 ms] Philosopher 30 is thinking
+[3 ms] Philosopher 26 is thinking
+[3 ms] Philosopher 34 is thinking
+[3 ms] Philosopher 28 is thinking
+[3 ms] Philosopher 36 is thinking
+[3 ms] Philosopher 36 Has taken right fork
+[3 ms] Philosopher 36 Has taken left fork
+[3 ms] Philosopher 36 Eat
+[3 ms] Philosopher 24 is thinking
+[3 ms] Philosopher 40 is thinking
+[3 ms] Philosopher 32 is thinking
+[3 ms] Philosopher 35 is thinking
+[3 ms] Philosopher 37 is thinking
+[3 ms] Philosopher 37 Has taken left fork
+[4 ms] Philosopher 38 is thinking
+[4 ms] Philosopher 22 is thinking
+[200 ms] Philosopher 1 Sleeping
+[200 ms] Philosopher 4 Has taken left fork
+[200 ms] Philosopher 4 Eat
+[200 ms] Philosopher 7 Sleeping
+[200 ms] Philosopher 5 Sleeping
+[200 ms] Philosopher 8 Has taken right fork
+[200 ms] Philosopher 2 Has taken right fork
+[200 ms] Philosopher 6 Has taken right fork
+[200 ms] Philosopher 6 Has taken left fork
+[200 ms] Philosopher 6 Eat
+[200 ms] Philosopher 2 Has taken left fork
+[200 ms] Philosopher 2 Eat
+[201 ms] Philosopher 19 Sleeping
+[201 ms] Philosopher 17 Sleeping
+[201 ms] Philosopher 9 Sleeping
+[201 ms] Philosopher 10 Has taken right fork
+[201 ms] Philosopher 20 Has taken right fork
+[201 ms] Philosopher 11 Sleeping
+[201 ms] Philosopher 8 Has taken left fork
+[201 ms] Philosopher 8 Eat
+[201 ms] Philosopher 13 Sleeping
+[201 ms] Philosopher 15 Sleeping
+[201 ms] Philosopher 16 Has taken right fork
+[201 ms] Philosopher 16 Has taken left fork
+[201 ms] Philosopher 16 Eat
+[201 ms] Philosopher 10 Has taken left fork
+[201 ms] Philosopher 10 Eat
+[201 ms] Philosopher 12 Has taken right fork
+[201 ms] Philosopher 12 Has taken left fork
+[201 ms] Philosopher 12 Eat
+[201 ms] Philosopher 14 Has taken right fork
+[201 ms] Philosopher 14 Has taken left fork
+[201 ms] Philosopher 14 Eat
+[201 ms] Philosopher 18 Has taken right fork
+[201 ms] Philosopher 18 Has taken left fork
+[201 ms] Philosopher 18 Eat
+[203 ms] Philosopher 23 Sleeping
+[203 ms] Philosopher 36 Sleeping
+[203 ms] Philosopher 35 Has taken left fork
+[203 ms] Philosopher 35 Has taken right fork
+[203 ms] Philosopher 35 Eat
+[203 ms] Philosopher 37 Has taken right fork
+[203 ms] Philosopher 37 Eat
+[203 ms] Philosopher 39 Sleeping
+[203 ms] Philosopher 33 Sleeping
+[203 ms] Philosopher 25 Sleeping
+[203 ms] Philosopher 31 Sleeping
+[203 ms] Philosopher 27 Sleeping
+[203 ms] Philosopher 32 Has taken right fork
+[203 ms] Philosopher 32 Has taken left fork
+[203 ms] Philosopher 32 Eat
+[203 ms] Philosopher 40 Has taken right fork
+[203 ms] Philosopher 40 Has taken left fork
+[203 ms] Philosopher 40 Eat
+[203 ms] Philosopher 30 Has taken right fork
+[203 ms] Philosopher 30 Has taken left fork
+[203 ms] Philosopher 30 Eat
+[203 ms] Philosopher 20 Has taken left fork
+[203 ms] Philosopher 20 Eat
+[203 ms] Philosopher 34 Has taken right fork
+[203 ms] Philosopher 28 Has taken right fork
+[203 ms] Philosopher 28 Has taken left fork
+[203 ms] Philosopher 28 Eat
+[203 ms] Philosopher 21 Sleeping
+[203 ms] Philosopher 24 Has taken right fork
+[203 ms] Philosopher 24 Has taken left fork
+[203 ms] Philosopher 24 Eat
+[203 ms] Philosopher 29 Sleeping
+[203 ms] Philosopher 26 Has taken right fork
+[203 ms] Philosopher 26 Has taken left fork
+[203 ms] Philosopher 26 Eat
+[203 ms] Philosopher 22 Has taken right fork
+[203 ms] Philosopher 22 Has taken left fork
+[203 ms] Philosopher 22 Eat
+[400 ms] Philosopher 2 Sleeping
+[400 ms] Philosopher 6 Sleeping
+[401 ms] Philosopher 5 is thinking
+[401 ms] Philosopher 5 Has taken left fork
+[401 ms] Philosopher 5 Has taken right fork
+[401 ms] Philosopher 5 Eat
+[401 ms] Philosopher 1 is thinking
+[401 ms] Philosopher 1 Has taken left fork
+[401 ms] Philosopher 8 Sleeping
+[401 ms] Philosopher 7 is thinking
+[401 ms] Philosopher 7 Has taken left fork
+[401 ms] Philosopher 7 Has taken right fork
+[401 ms] Philosopher 7 Eat
+[401 ms] Philosopher 4 Sleeping
+[401 ms] Philosopher 10 Sleeping
+[401 ms] Philosopher 3 Has taken left fork
+[401 ms] Philosopher 3 Has taken right fork
+[401 ms] Philosopher 3 Eat
+[401 ms] Philosopher 12 Sleeping
+[401 ms] Philosopher 14 Sleeping
+[401 ms] Philosopher 18 Sleeping
+[401 ms] Philosopher 16 Sleeping
+[402 ms] Philosopher 11 is thinking
+[402 ms] Philosopher 11 Has taken left fork
+[402 ms] Philosopher 11 Has taken right fork
+[402 ms] Philosopher 11 Eat
+[402 ms] Philosopher 15 is thinking
+[402 ms] Philosopher 15 Has taken left fork
+[402 ms] Philosopher 15 Has taken right fork
+[402 ms] Philosopher 15 Eat
+[402 ms] Philosopher 13 is thinking
+[402 ms] Philosopher 13 Has taken left fork
+[402 ms] Philosopher 13 Has taken right fork
+[402 ms] Philosopher 13 Eat
+[402 ms] Philosopher 17 is thinking
+[402 ms] Philosopher 17 Has taken left fork
+[402 ms] Philosopher 17 Has taken right fork
+[402 ms] Philosopher 17 Eat
+[402 ms] Philosopher 19 is thinking
+[403 ms] Philosopher 30 Sleeping
+[403 ms] Philosopher 28 Sleeping
+[403 ms] Philosopher 32 Sleeping
+[403 ms] Philosopher 38 Has taken right fork
+[403 ms] Philosopher 38 Has taken left fork
+[403 ms] Philosopher 38 Eat
+[404 ms] Philosopher 23 is thinking
+[404 ms] Philosopher 22 Sleeping
+[404 ms] Philosopher 23 Has taken left fork
+[404 ms] Philosopher 23 Has taken right fork
+[404 ms] Philosopher 23 Eat
+[404 ms] Philosopher 1 Has taken right fork
+[404 ms] Philosopher 1 Eat
+[404 ms] Philosopher 20 Sleeping
+[404 ms] Philosopher 40 Sleeping
+[404 ms] Philosopher 36 is thinking
+[404 ms] Philosopher 36 Has taken right fork
+[404 ms] Philosopher 21 is thinking
+[404 ms] Philosopher 21 Has taken left fork
+[404 ms] Philosopher 21 Has taken right fork
+[404 ms] Philosopher 21 Eat
+[404 ms] Philosopher 31 is thinking
+[404 ms] Philosopher 31 Has taken left fork
+[404 ms] Philosopher 31 Has taken right fork
+[404 ms] Philosopher 31 Eat
+[404 ms] Philosopher 27 is thinking
+[404 ms] Philosopher 27 Has taken left fork
+[404 ms] Philosopher 27 Has taken right fork
+[404 ms] Philosopher 27 Eat
+[404 ms] Philosopher 35 Sleeping
+[404 ms] Philosopher 24 Sleeping
+[404 ms] Philosopher 34 Has taken left fork
+[404 ms] Philosopher 34 Eat
+[404 ms] Philosopher 9 is thinking
+[404 ms] Philosopher 9 Has taken left fork
+[404 ms] Philosopher 9 Has taken right fork
+[404 ms] Philosopher 9 Eat
+[404 ms] Philosopher 26 Sleeping
+[404 ms] Philosopher 36 Has taken left fork
+[404 ms] Philosopher 36 Eat
+[404 ms] Philosopher 39 is thinking
+[404 ms] Philosopher 39 Has taken left fork
+[404 ms] Philosopher 33 is thinking
+[404 ms] Philosopher 29 is thinking
+[404 ms] Philosopher 29 Has taken left fork
+[404 ms] Philosopher 29 Has taken right fork
+[404 ms] Philosopher 29 Eat
+[404 ms] Philosopher 19 Has taken left fork
+[404 ms] Philosopher 19 Has taken right fork
+[404 ms] Philosopher 19 Eat
+[404 ms] Philosopher 37 Sleeping
+[404 ms] Philosopher 25 is thinking
+[404 ms] Philosopher 25 Has taken left fork
+[404 ms] Philosopher 25 Has taken right fork
+[404 ms] Philosopher 25 Eat
+[413 ms] Philosopher 33 died

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:42:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/07 23:09:33 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/09 19:15:44 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	verif_stop(t_philo *philo, t_info *info)
         pthread_mutex_lock(&info->meal);
         if (philo[i].meals_counter < info->nbr_limit_meals)
             status_meal_max = 0;
+        if (info->nbr_limit_meals == -1)
+            status_meal_max = 0;
         pthread_mutex_unlock(&info->meal);
         if (info->end_simulation == true)
             break ;
@@ -61,7 +63,7 @@ void	*manager(void *arg)
             philos->infos->end_simulation = true;
             pthread_mutex_unlock(&philos->infos->stop);
         }    
-		precise_usleep(1, philos->infos);
+		precise_usleep(5, philos->infos);
 	}
 	return (NULL);
 }
