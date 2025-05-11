@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 23:36:40 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:00:30 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdbool.h>
 # include <pthread.h>
 # include <sys/time.h>
-# define PHILO_MAX 300
+# define PHILO_MAX 200
 
 typedef struct s_info
 {
@@ -28,7 +28,6 @@ typedef struct s_info
 	long			time_to_eat;
 	long			nbr_limit_meals;
 	long			start_simulation;
-	bool			philo_ready;
 	bool			end_simulation;
 	int				philo_nbr;
 	pthread_t		stop_thread;

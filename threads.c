@@ -6,11 +6,23 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 23:27:34 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/11 22:58:34 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	philo_one(t_philo *philo)
+{
+	print("is thinking", philo);
+	pthread_mutex_lock(philo->right_fork);
+	print("has taken a fork", philo);
+	precise_usleep(philo->infos->time_to_die, philo->infos);
+	print("died", philo);
+	pthread_mutex_unlock(philo->right_fork);
+	philo->infos->end_simulation = true;
+	return ;
+}
 
 void	*philo_process(void *arg)
 {
@@ -19,6 +31,11 @@ void	*philo_process(void *arg)
 
 	i = 0;
 	philo = (t_philo *)arg;
+	if (philo->infos->philo_nbr == 1)
+	{
+		philo_one(philo);
+		return (NULL);
+	}
 	if (philo->id % 2 == 0)
 		precise_usleep(philo->infos->time_to_eat / 2, philo->infos);
 	while (philo->infos->end_simulation == false)
@@ -29,7 +46,6 @@ void	*philo_process(void *arg)
 		take_forks(philo);
 		eat(philo);
 		ft_sleep(philo);
-		precise_usleep((5), philo->infos);
 		i++;
 	}
 	return (NULL);
@@ -47,7 +63,6 @@ void	create_threads(t_info *infos, t_philo *philos)
 		pthread_create(&(philos[i].thread_id), NULL, philo_process, &philos[i]);
 		i++;
 	}
-	infos->philo_ready = true;
 	if (pthread_create(&(infos->stop_thread), NULL, manager, philos) != 0)
 		perror("pthread_create death_thread");
 	i = 0;

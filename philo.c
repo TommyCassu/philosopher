@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/11 20:55:28 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/11 22:57:46 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	ft_destroy(t_philo *philos, t_info *info, pthread_mutex_t *forks)
 
 int	verif_params(char **params)
 {
-	if (ft_atol(params[1]) <= 0)
+	if (ft_atol(params[1]) <= 0 || ft_atol(params[1]) > 200)
 	{
-		printf("Error : Enter a valid number of philosopher");
+		printf("Error : Enter a valid number of philosopher [1 - 200]");
 		return (1);
 	}
 	else if (ft_atol(params[2]) < 60 || ft_atol(params[3]) < 60
@@ -73,23 +73,19 @@ int	main(int ac, char *av[])
 
 	if (ac == 5 || ac == 6)
 	{
-		//check errors
 		if (verif_params(av) == 1)
 			return (0);
-		//Init data
 		init_forks(forks, ft_atoi(av[1]));
 		if (creating_philosopher(philos, av, forks, &infos) == 1)
 			return (0);
 		init_program(&infos);
 		create_threads(&infos, philos);
-		//clean program
 		ft_destroy(philos, &infos, forks);
 	}
 	else
 	{
 		printf("Error usage : ./philo nbr_philosophers time_to_die");
-		printf(" time_to_eattime_to_sleep [nbr_of_meals]");
+		printf(" time_to_eat time_to_sleep [nbr_of_meals]");
 	}
 	return (0);
 }
-
