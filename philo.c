@@ -6,13 +6,41 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 23:25:26 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/11 20:55:28 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 // ./philo 5 800 200 200 [5]
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
+/*   Updated: 2025/05/11 20:17:54 by tcassu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+void	ft_destroy(t_philo *philos, t_info *info, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	(void)philos;
+	while (i < info->philo_nbr)
+		pthread_mutex_destroy(&forks[i++]);
+	pthread_mutex_destroy(&info->print);
+	pthread_mutex_destroy(&info->meal);
+	pthread_mutex_destroy(&info->death);
+	pthread_mutex_destroy(&info->stop);
+}
+
 int	verif_params(char **params)
 {
 	if (ft_atol(params[1]) <= 0)
@@ -55,6 +83,7 @@ int	main(int ac, char *av[])
 		init_program(&infos);
 		create_threads(&infos, philos);
 		//clean program
+		ft_destroy(philos, &infos, forks);
 	}
 	else
 	{
@@ -63,3 +92,4 @@ int	main(int ac, char *av[])
 	}
 	return (0);
 }
+
