@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 08:28:55 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 19:38:57 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	verif_params(char **params)
 	else if (ft_atol(params[2]) < 60 || ft_atol(params[3]) < 60
 		|| ft_atol(params[4]) < 60)
 	{
-		printf("Error : Enter a valid time (more than 60ms)");
+		printf("Error : Enter a valid time ");
+		printf("(between 60ms and 9223372036854775807ms)\n");
 		return (1);
 	}
 	else if ((params[5]))

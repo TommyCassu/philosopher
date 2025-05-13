@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:42:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 18:45:11 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 20:21:08 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ void	verif_death(t_philo *philo, t_info *info)
 	}
 }
 
+int	check_status(t_philo *philo, t_info *info, int i, int *status)
+{
+	verif_death(&philo[i], info);
+	if (*status == 1)
+	{
+		pthread_mutex_lock(&info->meal);
+		if (philo[i].meals_counter < info->nbr_limit_meals)
+			*status = 0;
+		pthread_mutex_unlock(&info->meal);
+	}
+	pthread_mutex_lock(&info->stop);
+	if (info->end_simulation == true)
+	{
+		pthread_mutex_unlock(&info->stop);
+		return (1);
+	}
+	pthread_mutex_unlock(&info->stop);
+	return (0);
+}
+
 int	verif_stop(t_philo *philo, t_info *info)
 {
 	int	i;
@@ -39,21 +59,8 @@ int	verif_stop(t_philo *philo, t_info *info)
 		status_meal_max = 0;
 	while (i < info->philo_nbr)
 	{
-		verif_death(&philo[i], info);
-		if (status_meal_max == 1)
-		{
-			pthread_mutex_lock(&info->meal);
-			if (philo[i].meals_counter < info->nbr_limit_meals)
-				status_meal_max = 0;
-			pthread_mutex_unlock(&info->meal);
-		}
-		pthread_mutex_lock(&info->stop);
-		if (info->end_simulation == true)
-		{
-			pthread_mutex_unlock(&info->stop);
+		if (check_status(philo, info, i, &status_meal_max))
 			break ;
-		}
-		pthread_mutex_unlock(&info->stop);
 		i++;
 	}
 	return (status_meal_max);

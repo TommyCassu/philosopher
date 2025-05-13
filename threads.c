@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 18:44:45 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 20:22:22 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ void	philo_one(t_philo *philo)
 	philo->infos->end_simulation = true;
 	pthread_mutex_unlock(&philo->infos->stop);
 	return ;
+}
+
+void	routine(t_philo *philo)
+{
+	print("is thinking", philo);
+	take_forks(philo);
+	eat(philo);
+	ft_sleep(philo);
+	usleep(10);
 }
 
 void	*philo_process(void *arg)
@@ -49,11 +58,7 @@ void	*philo_process(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->infos->stop);
-		print("is thinking", philo);
-		take_forks(philo);
-		eat(philo);
-		ft_sleep(philo);
-		usleep(10);
+		routine(philo);
 		i++;
 	}
 	return (NULL);
