@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/11 22:58:34 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 08:46:42 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	*philo_process(void *arg)
 		take_forks(philo);
 		eat(philo);
 		ft_sleep(philo);
+		usleep(10);
 		i++;
 	}
 	return (NULL);

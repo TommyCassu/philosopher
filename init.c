@@ -6,13 +6,32 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 01:47:42 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/09 23:34:11 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 08:52:34 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// Philosopher
+void	init_forks(pthread_mutex_t *forks, int philo_nbr)
+{
+	long	i;
+
+	i = 0;
+	while (i < philo_nbr)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+}
+
+void	init_control_threads(t_info *infos)
+{
+	pthread_mutex_init(&infos->print, NULL);
+	pthread_mutex_init(&infos->meal, NULL);
+	pthread_mutex_init(&infos->death, NULL);
+	pthread_mutex_init(&infos->stop, NULL);
+}
+
 int	init_infos(t_info *infos, char **params)
 {
 	infos->philo_nbr = ft_atol(params[1]);
@@ -59,24 +78,4 @@ int	creating_philosopher(t_philo *philos, char **params,
 		i++;
 	}
 	return (0);
-}
-
-void	init_forks(pthread_mutex_t *forks, int philo_nbr)
-{
-	long	i;
-
-	i = 0;
-	while (i < philo_nbr)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
-}
-
-void	init_program(t_info *infos)
-{
-	pthread_mutex_init(&infos->print, NULL);
-	pthread_mutex_init(&infos->meal, NULL);
-	pthread_mutex_init(&infos->death, NULL);
-	pthread_mutex_init(&infos->stop, NULL);
 }

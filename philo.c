@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:11:54 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/11 22:57:46 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 08:28:55 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 #include "philo.h"
 
-void	ft_destroy(t_philo *philos, t_info *info, pthread_mutex_t *forks)
+void	ft_close(t_philo *philos, t_info *info, pthread_mutex_t *forks)
 {
 	int	i;
 
@@ -78,9 +78,9 @@ int	main(int ac, char *av[])
 		init_forks(forks, ft_atoi(av[1]));
 		if (creating_philosopher(philos, av, forks, &infos) == 1)
 			return (0);
-		init_program(&infos);
+		init_control_threads(&infos);
 		create_threads(&infos, philos);
-		ft_destroy(philos, &infos, forks);
+		ft_close(philos, &infos, forks);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 19:01:49 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/11 23:00:30 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 08:52:52 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,27 @@ typedef struct s_philo
 	t_info			*infos;
 }		t_philo;
 
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
-void	init_program(t_info *infos);
+/* initialisation */
+void	init_control_threads(t_info *infos);
 int		init_infos(t_info *infos, char **params);
 void	init_forks(pthread_mutex_t *forks, int philo_nbr);
+
+/* Threads */
 int		creating_philosopher(t_philo *philos, char **params,
 			pthread_mutex_t *forks, t_info *infos);
 void	create_threads(t_info *infos, t_philo *philos);
+void	*manager(void *arg);
+
+/* Actions */
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
+
+/* Utils */
+int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 long	get_time(void);
 void	precise_usleep(long usec, t_info *infos);
 void	print(char	*msg, t_philo *philo);
-void	*manager(void *arg);
+
 #endif
