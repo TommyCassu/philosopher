@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:00:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 08:58:35 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 18:12:23 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	print(char	*msg, t_philo *philo)
 	long	current_time;
 
 	pthread_mutex_lock(&philo->infos->print);
+	pthread_mutex_lock(&philo->infos->stop);
 	if (philo->infos->end_simulation == false)
 	{
 		current_time = get_time() - philo->infos->start_simulation;
 		printf("%ld %d %s\n", current_time, philo->id, msg);
 	}
+	pthread_mutex_unlock(&philo->infos->stop);
 	pthread_mutex_unlock(&philo->infos->print);
 }
 
@@ -34,8 +36,13 @@ void	precise_usleep(long ms, t_info *infos)
 	start = get_time();
 	while (get_time() - start < ms)
 	{
+		pthread_mutex_lock(&infos->stop);
 		if (infos->end_simulation == true)
+		{
+			pthread_mutex_unlock(&infos->stop);
 			return ;
+		}
+		pthread_mutex_unlock(&infos->stop);
 		elapsed = get_time() - start;
 		rem = ms - elapsed;
 		if (rem > 1)

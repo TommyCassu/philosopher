@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:42:47 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/11 22:58:18 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 18:45:11 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	verif_death(t_philo *philo, t_info *info)
 	pthread_mutex_unlock(&info->death);
 	if ((get_time() - last_meal) > info->time_to_die)
 	{
-		pthread_mutex_lock(&info->stop);
 		print("died", philo);
+		pthread_mutex_lock(&info->stop);
 		info->end_simulation = true;
 		pthread_mutex_unlock(&info->stop);
 	}
@@ -47,8 +47,13 @@ int	verif_stop(t_philo *philo, t_info *info)
 				status_meal_max = 0;
 			pthread_mutex_unlock(&info->meal);
 		}
+		pthread_mutex_lock(&info->stop);
 		if (info->end_simulation == true)
+		{
+			pthread_mutex_unlock(&info->stop);
 			break ;
+		}
+		pthread_mutex_unlock(&info->stop);
 		i++;
 	}
 	return (status_meal_max);
@@ -59,14 +64,22 @@ void	*manager(void *arg)
 	t_philo	*philos;
 
 	philos = (t_philo *)arg;
-	while (philos->infos->end_simulation == false)
+	while (1)
 	{
+		pthread_mutex_lock(&philos->infos->stop);
+		if (philos->infos->end_simulation == true)
+		{
+			pthread_mutex_unlock(&philos->infos->stop);
+			break ;
+		}
+		pthread_mutex_unlock(&philos->infos->stop);
 		if (verif_stop(philos, philos->infos))
 		{
-			pthread_mutex_lock(&philos->infos->stop);
 			print("Tous le monde a fini de manger", philos);
+			pthread_mutex_lock(&philos->infos->stop);
 			philos->infos->end_simulation = true;
 			pthread_mutex_unlock(&philos->infos->stop);
+			break ;
 		}
 		precise_usleep(5, philos->infos);
 	}

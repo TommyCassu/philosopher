@@ -6,7 +6,7 @@
 /*   By: tcassu <tcassu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 01:43:12 by tcassu            #+#    #+#             */
-/*   Updated: 2025/05/13 08:46:42 by tcassu           ###   ########.fr       */
+/*   Updated: 2025/05/13 18:44:45 by tcassu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	philo_one(t_philo *philo)
 {
 	print("is thinking", philo);
-	pthread_mutex_lock(philo->right_fork);
+	pthread_mutex_lock(philo->left_fork);
 	print("has taken a fork", philo);
 	precise_usleep(philo->infos->time_to_die, philo->infos);
 	print("died", philo);
-	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_lock(&philo->infos->stop);
 	philo->infos->end_simulation = true;
+	pthread_mutex_unlock(&philo->infos->stop);
 	return ;
 }
 
@@ -38,10 +40,15 @@ void	*philo_process(void *arg)
 	}
 	if (philo->id % 2 == 0)
 		precise_usleep(philo->infos->time_to_eat / 2, philo->infos);
-	while (philo->infos->end_simulation == false)
+	while (1)
 	{
+		pthread_mutex_lock(&philo->infos->stop);
 		if (philo->infos->end_simulation == true)
+		{
+			pthread_mutex_unlock(&philo->infos->stop);
 			break ;
+		}
+		pthread_mutex_unlock(&philo->infos->stop);
 		print("is thinking", philo);
 		take_forks(philo);
 		eat(philo);
